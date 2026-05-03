@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PhishGuard</title>
+  <link rel="stylesheet" href="stylemini.css">
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-container">
+      <div class="logo">
+        <span class="shield">🛡️</span>
+        <span class="brand">Phish<span class="highlight">Guard</span></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="main">
+    <section id="input-section" class="hero">
+      <h1>Detect Phishing in <span class="highlight">Real-Time.</span></h1>
+      <p>Paste email headers or message content to perform a deep heuristic security audit.</p>
+
+      <textarea id="emailInput" placeholder="Paste raw email content here..."></textarea>
+
+      <div class="demo-buttons">
+        <button id="demoSpam">🚨 Load Spam Example</button>
+        <button id="demoSuspicious">⚠️ Load Suspicious Example</button>
+        <button id="demoSafe">✅ Load Safe Example</button>
+        <button id="demoEvolution">💥 Phishing Evolution Demo</button>
+      </div>
+
+      <button id="analyzeBtn">Analyze Email</button>
+    </section>
+
+    <section id="results-section" class="results hidden">
+      <div class="risk-panel">
+        <div class="risk-display">
+          <div class="risk-circle" id="riskCircle">
+            <span id="riskPercentage">82%</span>
+          </div>
+          <div class="risk-label" id="riskLabel">HIGH RISK</div>
+          <div class="confidence" id="confidenceScore">ML Confidence: 85%</div>
+        </div>
+        
+        <div class="analysis-summary">
+          <h3>Analysis Summary</h3>
+          <div class="summary-stats">
+            <div class="stat">
+              <span class="stat-label">Risk Score</span>
+              <span class="stat-value" id="riskScore">8.2/10</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">Detection Methods</span>
+              <span class="stat-value">ML + Rules</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="details-panel">
+        <div class="tabs">
+          <button id="tabBody" class="tab-button active">Analysis Details</button>
+          <button id="tabHeaders" class="tab-button">Technical Headers</button>
+          <button id="tabReasons" class="tab-button">Detection Reasons</button>
+        </div>
+
+        <div id="bodyContent" class="tab-content active">
+          <p class="phish-example" id="analysisContent">
+            Analysis result will appear here...
+          </p>
+          <div class="indicators" id="indicatorsContainer">
+          </div>
+        </div>
+
+        <div id="headerContent" class="tab-content">
+          <pre id="headerDetails">
+Authentication-Results: mx.google.com; spf=fail
+DKIM-Signature: v=1; d=unknown.com;
+Return-Path: &lt;hacker@evil-server.ru&gt;
+          </pre>
+        </div>
+
+        <div id="reasonsContent" class="tab-content">
+          <ul class="reasons-list" id="reasonsList">
+            <li>Loading detection reasons...</li>
+          </ul>
+        </div>
+
+        <button id="resetBtn" class="reset-btn">🔄 Analyze Another Email</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', filename='miniscript.js') }}"></script>
+</body>
+</html>
